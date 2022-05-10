@@ -103,6 +103,6 @@ If you do not want to have these rows in your dataset, you can execute fixHUC.py
 
 The results are stored in the "data/fixed-positions-huc.csv" file, where the latitude and longitude values are matched with their respective HUC12 value.
 
-To create a HUC8 out of a HUC12 the last 6 digits can be removed:
+To create a HUC8 out of a HUC12 the last 4 digits can be removed:
 
 120401040303 (HUC12) -> 12040104 (HUC8)

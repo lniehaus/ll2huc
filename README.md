@@ -65,35 +65,39 @@ If you do not want to have these rows in your dataset, you can execute fixHUC.py
 
 1. We start with a file that has a reference number and the corrupted latitude and longitude values
 
-| Number | LATITUDE | LONGITUDE |
-| ------ | -------- | --------- |
-| 1001   | 2978037  | -956295   |
-| 1002   | 18445975 | -66391282 |
-| 1003   | 367452   | -1074455  |
-| 1004   | 430611   | -760819   |
+| Number | LATITUDE   | LONGITUDE   |
+| ------ | ---------- | ----------- |
+| 1001   | 2978037    | -956295     |
+| 1002   | 18445975   | -66391282   |
+| 1003   | 367452     | -1074455    |
+| 1004   | 2629555555 | -9489777777 |
+| 1005   | 430611     | -760819     |
 
-2. fixLL.py converts these rows into correct values, that are in the USA. In this process, 1 line gets dropped.
+2. fixLL.py converts these rows into correct values, that are in the USA. In this process, 1 row (1002) gets dropped.
 
-| Number | LATITUDE | LONGITUDE | fixed-LATITUDE | fixed-LONGITUDE |
-| ------ | -------- | --------- | -------------- | --------------- |
-| 1001   | 2978037  | -956295   | 29.78037       | -95.6295        |
-| 1003   | 367452   | -1074455  | 36.7452        | -107.4455       |
-| 1004   | 430611   | -760819   | 43.0611        | -76.0819        |
+| Number | LATITUDE   | LONGITUDE   | fixed-LATITUDE | fixed-LONGITUDE |
+| ------ | ---------- | ----------- | -------------- | --------------- |
+| 1001   | 2978037    | -956295     | 29.78037       | -95.6295        |
+| 1003   | 367452     | -1074455    | 36.7452        | -107.4455       |
+| 1004   | 2629555555 | -9489777777 | 26.29555555    | -94.89777777    |
+| 1005   | 430611     | -760819     | 43.0611        | -76.0819        |
 
 3. The Google Earth Engine collects the HUC12 values for the given latitude and longitude values.
 
-| system:index         | HUC12        | LATITUDE | LONGITUDE | Number | fixed-LATITUDE | fixed-LONGITUDE | .geo                                   |
-| -------------------- | ------------ | -------- | --------- | ------ | -------------- | --------------- | -------------------------------------- |
-| 00000000000000000000 | 120401040303 | 2978037  | -956295   | 1001   | 29.78037       | -95.6295        | {"type":"MultiPoint","coordinates":[]} |
-| 00000000000000000001 | 140801011604 | 367452   | -1074455  | 1003   | 36.7452        | -107.4455       | {"type":"MultiPoint","coordinates":[]} |
-| 00000000000000000002 | 041402011508 | 430611   | -760819   | 1004   | 43.0611        | -76.0819        | {"type":"MultiPoint","coordinates":[]} |
+| system:index         | HUC12        | LATITUDE   | LONGITUDE   | Number | fixed-LATITUDE     | fixed-LONGITUDE     | .geo                                   |
+| -------------------- | ------------ | ---------- | ----------- | ------ | ------------------ | ------------------- | -------------------------------------- |
+| 00000000000000000000 | 120401040303 | 2978037    | -956295     | 1001   | 29.780370712280273 | -95.62950134277344  | {"type":"MultiPoint","coordinates":[]} |
+| 00000000000000000001 | 140801011604 | 367452     | -1074455    | 1003   | 36.745201110839844 | -107.44550323486328 | {"type":"MultiPoint","coordinates":[]} |
+| 00000000000000000002 | -1           | 2629555555 | -9489777777 | 1004   | 26.29555555        | -94.89777777        | {"type":"MultiPoint","coordinates":[]} |
+| 00000000000000000003 | 041402011508 | 430611     | -760819     | 1005   | 43.061100006103516 | -76.08190155029297  | {"type":"MultiPoint","coordinates":[]} |
 
-4. fixHUC.py deletes all rows where no HUC12 was found and drops the columns "system:index" and ".geo" which were added by the Google Earth Engine. In the process, 1 row gets dropped.
+4. fixHUC.py deletes all rows where no HUC12 was found and drops the columns "system:index" and ".geo" which were added by the Google Earth Engine. In this process, 1 row (1004) gets dropped.
 
-| HUC12          | LATITUDE  | LONGITUDE  | Number | fixed-LATITUDE | fixed-LONGITUDE |
-| -------------- | --------- | ---------- | ------ | -------------- | --------------- |
-| 120401040303.0 | 2978037.0 | -956295.0  | 104.0  | 29.78037       | -95.6295        |
-| 140801011604.0 | 367452.0  | -1074455.0 | 105.0  | 36.7452        | -107.4455       |
+| HUC12          | LATITUDE  | LONGITUDE  | Number | fixed-LATITUDE     | fixed-LONGITUDE     |
+| -------------- | --------- | ---------- | ------ | ------------------ | ------------------- |
+| 120401040303.0 | 2978037.0 | -956295.0  | 1001.0 | 29.780370712280277 | -95.62950134277344  |
+| 140801011604.0 | 367452.0  | -1074455.0 | 1003.0 | 36.74520111083984  | -107.44550323486328 |
+| 41402011508.0  | 430611.0  | -760819.0  | 1005.0 | 43.06110000610352  | -76.08190155029297  |
 
 # Results
 

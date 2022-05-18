@@ -16,6 +16,8 @@ data = data.dropna()
 data.drop('system:index', axis=1, inplace=True) 
 data.drop('.geo', axis=1, inplace=True) 
 
+data[['HUC12', 'LATITUDE', 'LONGITUDE', 'Number']] = data[['HUC12', 'LATITUDE', 'LONGITUDE', 'Number']].astype(int)
+
 validCount = data.count()["Number"]
 
 print("totalCount: " + str(totalCount))

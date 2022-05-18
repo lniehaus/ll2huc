@@ -93,11 +93,11 @@ If you do not want to have these rows in your dataset, you can execute fixHUC.py
 
 4. fixHUC.py deletes all rows where no HUC12 was found and drops the columns "system:index" and ".geo" which were added by the Google Earth Engine. In this process, 1 row (1004) gets dropped.
 
-| HUC12          | LATITUDE  | LONGITUDE  | Number | fixed-LATITUDE     | fixed-LONGITUDE     |
-| -------------- | --------- | ---------- | ------ | ------------------ | ------------------- |
-| 120401040303.0 | 2978037.0 | -956295.0  | 1001.0 | 29.780370712280277 | -95.62950134277344  |
-| 140801011604.0 | 367452.0  | -1074455.0 | 1003.0 | 36.74520111083984  | -107.44550323486328 |
-| 41402011508.0  | 430611.0  | -760819.0  | 1005.0 | 43.06110000610352  | -76.08190155029297  |
+| HUC12        | LATITUDE | LONGITUDE | Number | fixed-LATITUDE     | fixed-LONGITUDE     |
+| ------------ | -------- | --------- | ------ | ------------------ | ------------------- |
+| 120401040303 | 2978037  | -956295   | 1001   | 29.780370712280277 | -95.62950134277344  |
+| 140801011604 | 367452   | -1074455  | 1003   | 36.74520111083984  | -107.44550323486328 |
+| 41402011508  | 430611   | -760819   | 1005   | 43.06110000610352  | -76.08190155029297  |
 
 # Results
 
